@@ -1,1 +1,558 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wellington Motos — Compra, venda e troca em Paulo Afonso - BA</title>
+<meta name="description" content="Wellington Motos: compra, venda e troca de motos em Paulo Afonso - BA. Garantia da loja, aceitamos cartões e financiamos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:#0a0a0a;
+    color:#f3f1ec;
+    font-family:'Barlow', sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    margin:0;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 24px;}
 
+  :root{
+    --orange:#e2532c;
+    --orange-dark:#b83c1a;
+    --muted:#c9cdd3;
+    --line:rgba(255,255,255,0.08);
+    --card:#151515;
+  }
+
+  /* ---------- faixa decorativa ---------- */
+  .lane{
+    height:14px;
+    background: repeating-linear-gradient(-45deg, var(--orange) 0 26px, transparent 26px 52px);
+    opacity:0.9;
+  }
+  .lane.thin{height:6px; opacity:0.6;}
+  .lane-frame{border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+
+  /* ---------- logo ---------- */
+  .logo-svg{height:48px; width:auto; display:block;}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,10,10,0.94);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px; max-width:1240px; margin:0 auto;
+  }
+  .logo{display:flex; align-items:center;}
+  .navlinks{display:flex; gap:32px; font-size:0.85rem; letter-spacing:0.06em; text-transform:uppercase; font-weight:600;}
+  .navlinks a{opacity:0.75; transition:opacity .2s;}
+  .navlinks a:hover{opacity:1; color:var(--orange);}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--orange); color:#fff; font-weight:700;
+    padding:12px 22px; border-radius:2px; font-size:0.85rem;
+    letter-spacing:0.05em; text-transform:uppercase;
+    border:1px solid var(--orange); transition:transform .15s, background .2s;
+  }
+  .btn:hover{background:var(--orange-dark); transform:translateY(-1px);}
+  .btn.ghost{background:transparent; color:#f3f1ec; border-color:rgba(255,255,255,0.2);}
+  .btn.ghost:hover{border-color:var(--orange); color:var(--orange);}
+  .btn svg{width:18px;height:18px;flex-shrink:0;}
+  @media (max-width:860px){ .navlinks{display:none;} }
+  @media (max-width:520px){ .nav .btn{padding:10px 14px; font-size:0.75rem;} .logo-svg{height:40px;} }
+
+  /* ---------- placeholder de foto ---------- */
+  .ph{
+    width:100%; height:100%;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
+    background:
+      repeating-linear-gradient(-45deg, rgba(226,83,44,0.07) 0 18px, transparent 18px 36px),
+      #101010;
+    color:rgba(255,255,255,0.45);
+    font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; font-weight:600;
+    text-align:center; padding:12px;
+  }
+  .ph svg{width:64px;height:64px;color:var(--orange);opacity:0.8;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative; overflow:hidden;
+    display:grid; grid-template-columns: 1.1fr 0.9fr; align-items:stretch;
+    min-height:88vh;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-copy{
+    display:flex; flex-direction:column; justify-content:center;
+    padding:80px 56px; position:relative; z-index:2;
+    background:linear-gradient(120deg, rgba(10,10,10,1) 55%, rgba(10,10,10,0.2) 100%);
+  }
+  .eyebrow{
+    color:var(--orange); font-weight:700; font-size:0.8rem; letter-spacing:0.25em;
+    text-transform:uppercase; margin-bottom:20px; display:flex; align-items:center; gap:12px;
+  }
+  .eyebrow::before{content:''; width:34px; height:2px; background:var(--orange);}
+  .hero h1{font-size:2.8rem; line-height:0.98; color:#f3f1ec; font-weight:700;}
+  .hero h1 em{font-style:normal; color:var(--orange);}
+  .hero p.lead{
+    margin-top:26px; max-width:480px; font-size:1.1rem; color:var(--muted);
+    font-style:italic; font-weight:500;
+  }
+  .hero-cta{display:flex; gap:16px; margin-top:40px; flex-wrap:wrap;}
+  .hero-badges{
+    display:flex; gap:28px; margin-top:56px; padding-top:28px;
+    border-top:1px solid var(--line); flex-wrap:wrap;
+  }
+  .hero-badges .badge{font-size:0.78rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--muted); font-weight:600; display:flex; align-items:center; gap:8px;}
+  .hero-badges .badge svg{width:16px;height:16px; color:var(--orange);}
+  .hero-visual{position:relative; background:#101010;}
+  .hero-visual::before{
+    content:''; position:absolute; top:0; left:0; right:0; bottom:0; z-index:2; pointer-events:none;
+    background:linear-gradient(100deg, #0a0a0a 0%, transparent 30%);
+  }
+  @media (max-width:960px){
+    .hero{grid-template-columns:1fr; min-height:auto;}
+    .hero-copy{padding:56px 24px 40px;}
+    .hero-visual{min-height:300px;}
+    .hero h1{font-size:2.3rem;}
+  }
+
+  /* ---------- seções ---------- */
+  section{padding:96px 0;}
+  .sec-head{max-width:640px; margin-bottom:56px;}
+  .sec-head .eyebrow{margin-bottom:14px;}
+  .sec-head h2{font-size:1.9rem; color:#f3f1ec;}
+  .sec-head p{color:var(--muted); margin-top:16px; font-size:1.05rem;}
+
+  /* ---------- faixa de benefícios ---------- */
+  .stats{background:#151515; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .stats .wrap{display:grid; grid-template-columns:repeat(4,1fr); gap:28px; padding:44px 24px;}
+  .stat{display:flex; gap:14px; align-items:flex-start;}
+  .stat svg{width:30px;height:30px;color:var(--orange); flex-shrink:0; margin-top:4px;}
+  .stat h3{font-size:1.05rem; color:#f3f1ec; font-weight:600;}
+  .stat p{margin:6px 0 0; color:var(--muted); font-size:0.9rem;}
+  @media (max-width:960px){ .stats .wrap{grid-template-columns:1fr 1fr;} }
+  @media (max-width:560px){ .stats .wrap{grid-template-columns:1fr;} }
+
+  /* ---------- estoque ---------- */
+  .cat-tag{
+    display:inline-block; font-size:0.68rem; letter-spacing:0.12em; font-weight:700;
+    text-transform:uppercase; padding:5px 10px; border:1px solid var(--orange); color:var(--orange);
+    border-radius:2px;
+  }
+  .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:28px;}
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:4px;
+    overflow:hidden; position:relative; transition:transform .25s, border-color .25s;
+  }
+  .card:hover{transform:translateY(-6px); border-color:var(--orange);}
+  .card-media{position:relative; height:220px; overflow:hidden; background:#000;}
+  .card-media img{width:100%; height:100%; object-fit:cover;}
+  .card-media .strip{position:absolute; left:0; bottom:0; width:100%;}
+  .card-body{padding:20px;}
+  .card-body .cat-tag{margin-bottom:12px;}
+  .card-body h3{font-size:1.25rem; color:#f3f1ec; font-weight:600;}
+  .card-body p{color:var(--muted); font-size:0.88rem; margin:8px 0 18px;}
+  .mini-link{
+    display:inline-flex; align-items:center; gap:8px; font-weight:700; font-size:0.82rem;
+    text-transform:uppercase; letter-spacing:0.05em; color:var(--orange);
+  }
+  .mini-link svg{width:16px;height:16px;}
+  .catalog-foot{text-align:center; margin-top:52px; color:var(--muted); font-size:0.95rem;}
+  .catalog-foot a{color:var(--orange); font-weight:700;}
+
+  /* ---------- diferenciais ---------- */
+  .diff-wrap{display:grid; grid-template-columns:0.9fr 1.1fr; gap:64px; align-items:center;}
+  .diff-list{display:flex; flex-direction:column;}
+  .diff-item{display:flex; gap:20px; padding:26px 0; border-bottom:1px solid var(--line);}
+  .diff-item:first-child{padding-top:0;}
+  .diff-num{font-family:'Oswald'; font-weight:700; font-size:1.6rem; color:var(--orange-dark); min-width:44px;}
+  .diff-item h3{font-size:1.15rem; color:#f3f1ec; font-weight:600; margin-bottom:6px;}
+  .diff-item p{color:var(--muted); font-size:0.92rem; margin:0;}
+  .diff-photo{position:relative; border-radius:4px; overflow:hidden; min-height:380px; background:#101010;}
+  .diff-photo .ph{position:absolute; inset:0;}
+  .diff-photo::after{
+    content:''; position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(0deg, rgba(10,10,10,0.85), transparent 55%);
+  }
+  .diff-photo-tag{
+    position:absolute; left:20px; bottom:20px; z-index:2;
+    color:#fff; font-family:'Oswald'; text-transform:uppercase; letter-spacing:0.05em;
+  }
+  .diff-photo-tag span{display:block; font-size:0.7rem; color:var(--orange); letter-spacing:0.2em; margin-bottom:6px;}
+  @media (max-width:900px){ .diff-wrap{grid-template-columns:1fr;} .diff-photo{order:-1; min-height:240px;} }
+
+  /* ---------- localização ---------- */
+  .loc-wrap{display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;}
+  .loc-list{display:flex; flex-direction:column; gap:18px; margin-top:28px;}
+  .loc-item{display:flex; gap:14px; align-items:flex-start;}
+  .loc-item svg{width:24px;height:24px;color:var(--orange);flex-shrink:0;margin-top:2px;}
+  .loc-item strong{display:block; font-family:'Oswald'; text-transform:uppercase; font-size:0.95rem; letter-spacing:0.04em;}
+  .loc-item span, .loc-item a{color:var(--muted); font-size:0.98rem;}
+  .loc-item a:hover{color:var(--orange);}
+  .loc-card{
+    border:1px solid var(--line); background:var(--card); border-radius:4px;
+    min-height:300px; overflow:hidden; position:relative;
+  }
+  .loc-card .ph{position:absolute; inset:0;}
+  @media (max-width:860px){ .loc-wrap{grid-template-columns:1fr;} }
+
+  /* ---------- CTA ---------- */
+  .cta-banner{
+    position:relative; background:#1e1e1e; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    text-align:center; overflow:hidden;
+  }
+  .cta-banner::before{
+    content:''; position:absolute; inset:-2px;
+    background: repeating-linear-gradient(-45deg, rgba(226,83,44,0.09) 0 40px, transparent 40px 80px);
+  }
+  .cta-inner{position:relative; z-index:2; padding:80px 24px;}
+  .cta-inner h2{font-size:2rem; color:#f3f1ec; margin-bottom:18px;}
+  .cta-inner p{color:var(--muted); max-width:560px; margin:0 auto 36px; font-size:1.05rem;}
+  .cta-buttons{display:flex; justify-content:center; gap:18px; flex-wrap:wrap;}
+
+  /* ---------- footer ---------- */
+  footer{padding:56px 0 28px;}
+  .foot-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px; margin-bottom:48px;}
+  footer p{color:var(--muted); font-size:0.9rem; max-width:340px; margin-top:16px;}
+  .foot-col h4{
+    font-family:'Oswald'; font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted);
+    margin:0 0 16px; font-weight:700;
+  }
+  .foot-col a, .foot-col span{display:block; margin-bottom:10px; font-size:0.92rem; color:#f3f1ec; opacity:0.9;}
+  .foot-col a:hover{color:var(--orange);}
+  .foot-bottom{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+    padding-top:24px; border-top:1px solid var(--line); font-size:0.8rem; color:var(--muted);
+  }
+  @media (max-width:760px){ .foot-grid{grid-template-columns:1fr;} }
+
+  /* ---------- whatsapp flutuante ---------- */
+  .float-wa{
+    position:fixed; bottom:22px; right:22px; z-index:60;
+    background:var(--orange); color:#fff; width:58px; height:58px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(226,83,44,0.45);
+    transition:transform .2s;
+  }
+  .float-wa:hover{transform:scale(1.08);}
+  .float-wa svg{width:28px;height:28px;}
+</style>
+</head>
+<body>
+
+<!-- Ícones reutilizáveis -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.71.45 3.37 1.3 4.85L2 22l5.36-1.4a9.9 9.9 0 0 0 4.68 1.19h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2Zm5.8 14.14c-.24.68-1.4 1.3-1.93 1.36-.5.06-1.05.28-3.53-.74-2.98-1.24-4.9-4.26-5.05-4.46-.15-.2-1.2-1.6-1.2-3.06 0-1.45.76-2.16 1.03-2.46.27-.3.6-.36.79-.36h.57c.18 0 .43-.07.67.51.24.6.83 2.05.9 2.2.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.3.38-.44.51-.15.15-.3.31-.13.6.17.3.76 1.25 1.63 2.02 1.12 1 2.06 1.31 2.36 1.46.3.15.47.13.65-.08.17-.2.73-.85.92-1.15.2-.3.4-.24.66-.15.27.1 1.7.8 2 .95.28.15.47.22.54.35.07.13.07.75-.17 1.43Z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-moto" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="43" r="9"/><circle cx="50" cy="43" r="9"/><path d="M14 43l10-18h14l6 10M24 25l-3-6h-6M38 25l12 18M28 36h14"/></g></symbol>
+  </defs>
+</svg>
+
+<header>
+  <div class="nav">
+    <a href="#top" class="logo" aria-label="Wellington Motos">
+      <!-- LOGO (SVG). Para usar o arquivo original: troque este <svg> por <img src="logo.png" alt="Wellington Motos" height="44"> -->
+      <svg class="logo-svg" viewBox="0 0 330 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wellington Motos">
+        <g fill="#f3f1ec">
+          <path d="M2 8h30l-4 4H2z"/><path d="M2 15h24l-4 4H2z"/><path d="M2 22h18l-4 4H2z"/>
+        </g>
+        <text x="40" y="38" font-family="Oswald, sans-serif" font-weight="700" font-size="34" fill="#f3f1ec" letter-spacing="1">WELLINGTON</text>
+        <rect x="40" y="46" width="30" height="3" fill="#e2532c"/>
+        <text x="78" y="58" font-family="Oswald, sans-serif" font-weight="700" font-size="17" fill="#e2532c" letter-spacing="6">MOTOS</text>
+        <rect x="190" y="46" width="30" height="3" fill="#e2532c"/>
+      </svg>
+    </a>
+    <nav class="navlinks">
+      <a href="#estoque">Estoque</a>
+      <a href="#diferenciais">Diferenciais</a>
+      <a href="#localizacao">Localização</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a class="btn" href="https://wa.me/5575992927320" target="_blank" rel="noopener">
+      <svg><use href="#i-wa"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="padding:0;">
+    <div class="hero-copy">
+      <div class="eyebrow">Compra · Venda · Troca</div>
+      <h1>Sua moto<br>está <em>aqui!</em></h1>
+      <p class="lead">Na Wellington Motos você compra, vende ou troca sua moto com garantia da loja, aceitamos cartões e financiamos. Venha conhecer, em Paulo Afonso - BA.</p>
+      <div class="hero-cta">
+        <a class="btn" href="https://wa.me/5575992927320?text=Oi!%20Vim%20pelo%20site%20e%20quero%20ver%20as%20motos%20dispon%C3%ADveis" target="_blank" rel="noopener">
+          <svg><use href="#i-wa"/></svg>
+          Ver motos disponíveis
+        </a>
+        <a class="btn ghost" href="#estoque">Ver estoque</a>
+      </div>
+      <div class="hero-badges">
+        <div class="badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 6v6c0 5 4 8.5 9 10 5-1.5 9-5 9-10V6l-9-4Z"/><path d="m9 12 2 2 4-4"/></svg>
+          Garantia da loja
+        </div>
+        <div class="badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+          Aceitamos cartões
+        </div>
+        <div class="badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          Aceitamos troca
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <!-- Troque pelo <img src="fachada.jpg" style="width:100%;height:100%;object-fit:cover"> -->
+      <div class="ph"><svg><use href="#i-moto"/></svg>Foto da fachada / loja</div>
+    </div>
+  </section>
+
+  <div class="lane"></div>
+
+  <!-- BENEFÍCIOS -->
+  <section class="stats" style="padding:0;">
+    <div class="wrap">
+      <div class="stat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 3 6v6c0 5 4 8.5 9 10 5-1.5 9-5 9-10V6l-9-4Z"/></svg>
+        <div><h3>Garantia da loja</h3><p>Compre com segurança e suporte direto pelo WhatsApp.</p></div>
+      </div>
+      <div class="stat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg>
+        <div><h3>Aceitamos cartões</h3><p>Pague do jeito que ficar melhor pra você.</p></div>
+      </div>
+      <div class="stat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>
+        <div><h3>Financiamos</h3><p>Consulte as condições e saia de moto na hora.</p></div>
+      </div>
+      <div class="stat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+        <div><h3>Aceitamos troca</h3><p>Dê a sua moto como entrada na próxima.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESTOQUE -->
+  <section id="estoque">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Estoque atual</div>
+        <h2>As motos da Wellington, direto pra sua tela.</h2>
+        <p>Toque em qualquer moto pra confirmar disponibilidade, valores e condições no WhatsApp.</p>
+      </div>
+
+      <div class="grid">
+
+        <!-- Modelos de exemplo: edite com o estoque real. Para colocar foto, troque o bloco .ph por <img src="moto1.jpg" alt="Nome da moto"> -->
+        <article class="card">
+          <div class="card-media"><div class="ph"><svg><use href="#i-moto"/></svg>Foto da moto</div><div class="lane thin strip"></div></div>
+          <div class="card-body">
+            <span class="cat-tag">Street</span>
+            <h3>CG 160 Fan</h3>
+            <p>Baixo consumo, manutenção fácil e a parceira de todo dia.</p>
+            <a class="mini-link" href="https://wa.me/5575992927320?text=Oi!%20Quero%20saber%20mais%20sobre%20a%20CG%20160%20Fan" target="_blank" rel="noopener">Consultar <svg><use href="#i-arrow"/></svg></a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media"><div class="ph"><svg><use href="#i-moto"/></svg>Foto da moto</div><div class="lane thin strip"></div></div>
+          <div class="card-body">
+            <span class="cat-tag">Trail urbana</span>
+            <h3>NXR 160 Bros</h3>
+            <p>Suspensão alta e a robustez que aguenta estrada de chão.</p>
+            <a class="mini-link" href="https://wa.me/5575992927320?text=Oi!%20Quero%20saber%20mais%20sobre%20a%20Bros%20160" target="_blank" rel="noopener">Consultar <svg><use href="#i-arrow"/></svg></a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media"><div class="ph"><svg><use href="#i-moto"/></svg>Foto da moto</div><div class="lane thin strip"></div></div>
+          <div class="card-body">
+            <span class="cat-tag">Popular</span>
+            <h3>Biz 125</h3>
+            <p>Leve, econômica e barata de manter. Ideal pro dia a dia.</p>
+            <a class="mini-link" href="https://wa.me/5575992927320?text=Oi!%20Quero%20saber%20mais%20sobre%20a%20Biz%20125" target="_blank" rel="noopener">Consultar <svg><use href="#i-arrow"/></svg></a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media"><div class="ph"><svg><use href="#i-moto"/></svg>Foto da moto</div><div class="lane thin strip"></div></div>
+          <div class="card-body">
+            <span class="cat-tag">Trail Adventure</span>
+            <h3>XRE 300</h3>
+            <p>Motor com fôlego pra viagem e conforto pra rodar o dia inteiro.</p>
+            <a class="mini-link" href="https://wa.me/5575992927320?text=Oi!%20Quero%20saber%20mais%20sobre%20a%20XRE%20300" target="_blank" rel="noopener">Consultar <svg><use href="#i-arrow"/></svg></a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media"><div class="ph"><svg><use href="#i-moto"/></svg>Foto da moto</div><div class="lane thin strip"></div></div>
+          <div class="card-body">
+            <span class="cat-tag">Naked</span>
+            <h3>CB Twister 160</h3>
+            <p>Postura esportiva e aquela cara de naked que chama atenção.</p>
+            <a class="mini-link" href="https://wa.me/5575992927320?text=Oi!%20Quero%20saber%20mais%20sobre%20a%20Twister%20160" target="_blank" rel="noopener">Consultar <svg><use href="#i-arrow"/></svg></a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media"><div class="ph"><svg><use href="#i-moto"/></svg>Foto da moto</div><div class="lane thin strip"></div></div>
+          <div class="card-body">
+            <span class="cat-tag">Scooter</span>
+            <h3>PCX</h3>
+            <p>Design, painel digital e o conforto de uma scooter grande.</p>
+            <a class="mini-link" href="https://wa.me/5575992927320?text=Oi!%20Quero%20saber%20mais%20sobre%20a%20PCX" target="_blank" rel="noopener">Consultar <svg><use href="#i-arrow"/></svg></a>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="catalog-foot">Não achou o modelo? <a href="https://wa.me/5575992927320?text=Oi!%20Estou%20procurando%20uma%20moto%20espec%C3%ADfica" target="_blank" rel="noopener">Chama no WhatsApp</a> que a gente localiza pra você.</p>
+    </div>
+  </section>
+
+  <div class="lane lane-frame"></div>
+
+  <!-- DIFERENCIAIS -->
+  <section id="diferenciais">
+    <div class="wrap">
+      <div class="diff-wrap">
+        <div>
+          <div class="eyebrow">Por que a Wellington</div>
+          <h2 style="font-size:1.9rem; margin-bottom:36px;">Compra, venda e troca com quem é de casa.</h2>
+          <div class="diff-list">
+            <div class="diff-item">
+              <span class="diff-num">01</span>
+              <div><h3>Garantia da loja</h3><p>Você compra com segurança e tem suporte depois da venda.</p></div>
+            </div>
+            <div class="diff-item">
+              <span class="diff-num">02</span>
+              <div><h3>Financiamento e cartões</h3><p>Financiamos e aceitamos cartões, com condição pra caber no seu bolso.</p></div>
+            </div>
+            <div class="diff-item">
+              <span class="diff-num">03</span>
+              <div><h3>Aceitamos sua moto na troca</h3><p>Avaliamos a sua e você sai com a próxima.</p></div>
+            </div>
+            <div class="diff-item">
+              <span class="diff-num">04</span>
+              <div><h3>Atendimento direto</h3><p>Fale pelo WhatsApp ou venha até a loja em Paulo Afonso - BA.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="diff-photo">
+          <div class="ph"><svg><use href="#i-moto"/></svg>Foto da loja / equipe</div>
+          <div class="diff-photo-tag"><span>Wellington Motos</span>Sua moto está aqui!</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCALIZAÇÃO -->
+  <section id="localizacao" style="background:#0f0f0f; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="loc-wrap">
+        <div>
+          <div class="eyebrow">Venha nos visitar</div>
+          <h2 style="font-size:1.9rem;">Estamos em Paulo Afonso - BA</h2>
+          <div class="loc-list">
+            <div class="loc-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              <div><strong>Endereço</strong><a href="https://www.google.com/maps/search/?api=1&query=Rua+Santa+Rita+207+Paulo+Afonso+BA" target="_blank" rel="noopener">Rua Santa Rita, 207 — BTN1<br>Paulo Afonso - BA</a></div>
+            </div>
+            <div class="loc-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+              <div><strong>WhatsApp</strong><a href="https://wa.me/5575992927320" target="_blank" rel="noopener">(75) 99292-7320</a></div>
+            </div>
+            <div class="loc-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+              <div><strong>Instagram</strong><a href="https://www.instagram.com/wellington_motos79" target="_blank" rel="noopener">@wellington_motos79</a></div>
+            </div>
+          </div>
+          <div style="margin-top:32px;">
+            <a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=Rua+Santa+Rita+207+Paulo+Afonso+BA" target="_blank" rel="noopener">Abrir no mapa</a>
+          </div>
+        </div>
+        <div class="loc-card">
+          <div class="ph"><svg><use href="#i-moto"/></svg>Foto da fachada</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner" id="contato">
+    <div class="cta-inner wrap">
+      <h2>Sua próxima moto tá aqui.</h2>
+      <p>Manda um oi no WhatsApp com o modelo que você procura. A gente confirma o estoque, as condições de pagamento e agenda sua visita.</p>
+      <div class="cta-buttons">
+        <a class="btn" href="https://wa.me/5575992927320" target="_blank" rel="noopener">
+          <svg><use href="#i-wa"/></svg>
+          (75) 99292-7320
+        </a>
+        <a class="btn ghost" href="https://www.instagram.com/wellington_motos79" target="_blank" rel="noopener">@wellington_motos79</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="lane"></div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <svg class="logo-svg" viewBox="0 0 330 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wellington Motos">
+          <g fill="#f3f1ec"><path d="M2 8h30l-4 4H2z"/><path d="M2 15h24l-4 4H2z"/><path d="M2 22h18l-4 4H2z"/></g>
+          <text x="40" y="38" font-family="Oswald, sans-serif" font-weight="700" font-size="34" fill="#f3f1ec" letter-spacing="1">WELLINGTON</text>
+          <rect x="40" y="46" width="30" height="3" fill="#e2532c"/>
+          <text x="78" y="58" font-family="Oswald, sans-serif" font-weight="700" font-size="17" fill="#e2532c" letter-spacing="6">MOTOS</text>
+          <rect x="190" y="46" width="30" height="3" fill="#e2532c"/>
+        </svg>
+        <p>Compra, venda e troca de motos em Paulo Afonso - BA. Garantia da loja, aceitamos cartões e financiamos.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Contato</h4>
+        <a href="https://wa.me/5575992927320" target="_blank" rel="noopener">(75) 99292-7320</a>
+        <a href="https://www.instagram.com/wellington_motos79" target="_blank" rel="noopener">@wellington_motos79</a>
+        <span>Rua Santa Rita, 207 — BTN1<br>Paulo Afonso - BA</span>
+      </div>
+      <div class="foot-col">
+        <h4>Navegação</h4>
+        <a href="#estoque">Estoque</a>
+        <a href="#diferenciais">Diferenciais</a>
+        <a href="#localizacao">Localização</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Wellington Motos — todos os direitos reservados.</span>
+      <span>Paulo Afonso - BA</span>
+    </div>
+  </div>
+</footer>
+
+<a class="float-wa" href="https://wa.me/5575992927320" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg><use href="#i-wa"/></svg>
+</a>
+
+</body>
+</html>
